@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semangat Terus Ya! ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Pangolin&family=Quicksand:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-pink: #ffafcc;
+            --secondary-pink: #ffc8dd;
+            --soft-white: #fff0f3;
+            --text-color: #5c5c5c;
+            --accent-color: #fb6f92;
+            --cream: #fff9fb;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' style='font-size: 20px'><text y='18'>✨</text></svg>"), auto;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, var(--secondary-pink) 0%, var(--soft-white) 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            color: var(--text-color);
+            padding: 20px;
+        }
+
+        /* Animated Background Particles */
+        .particle {
+            position: fixed;
+            top: -10%;
+            z-index: -1;
+            user-select: none;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        /* Floating Decoration */
+        .decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.7;
+            filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            50% { transform: translateY(-25px) rotate(10deg) scale(1.1); }
+            100% { transform: translateY(0px) rotate(0deg) scale(1); }
+        }
+
+        .heart {
+            font-size: 2.5rem;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Main Card */
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 40px 30px;
+            border-radius: 40px;
+            box-shadow: 
+                0 15px 35px rgba(255, 175, 204, 0.4),
+                inset 0 0 15px rgba(255, 255, 255, 0.5);
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            border: 6px solid white;
+            animation: slideUp 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), sway 6s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(50px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1deg); }
+        }
+
+        .photo-frame {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 25px;
+            border-radius: 40px; /* Squircle style */
+            border: 6px solid var(--secondary-pink);
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            background-color: #fff;
+            position: relative;
+            transform: rotate(-3deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+            border-color: var(--accent-color);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            font-family: 'Pangolin', cursive;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 2rem;
+            text-shadow: 2px 2px 0px white;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 30px;
+            font-size: 1.15rem;
+            font-weight: 500;
+        }
+
+        .btn-music {
+            background: linear-gradient(to bottom, var(--accent-color), #ff4d6d);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 6px 0px #c9184a;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            top: 0;
+        }
+
+        .btn-music:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0px #c9184a;
+            filter: brightness(1.1);
+        }
+
+        .btn-music:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0px #c9184a;
+        }
+
+        /* Music Wave Animation */
+        .wave-container {
+            display: none;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 25px;
+            background: rgba(255, 175, 204, 0.1);
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        .wave {
+            width: 6px;
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 3px;
+            animation: wave-anim 1s ease-in-out infinite;
+        }
+
+        .wave:nth-child(2) { animation-delay: 0.1s; }
+        .wave:nth-child(3) { animation-delay: 0.2s; }
+        .wave:nth-child(4) { animation-delay: 0.3s; }
+        .wave:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes wave-anim {
+            0%, 100% { transform: scaleY(0.3); }
+            50% { transform: scaleY(1); }
+        }
+
+        footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: bold;
+            background: white;
+            padding: 5px 20px;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--soft-white);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-pink);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Particle Script and Container -->
+    <div id="particles"></div>
+
+    <!-- Floating Decorations -->
+    <div class="decoration heart" style="top: 5%; left: 5%;">🧸</div>
+    <div class="decoration heart" style="top: 15%; right: 10%; animation-delay: 1s;">☁️</div>
+    <div class="decoration heart" style="bottom: 10%; left: 15%; animation-delay: 0.5s;">🍭</div>
+    <div class="decoration heart" style="bottom: 20%; right: 5%; animation-delay: 1.5s;">🌈</div>
+    <div class="decoration heart" style="top: 40%; left: -2%; animation-delay: 2s; font-size: 3rem;">🌸</div>
+
+    <div class="container">
+        <div class="photo-frame">
+            <img src="Ginseng.jpg" alt="Ginseng Cantik">
+        </div>
+
+        <h1>Hai Sayanggg! ✨</h1>
+        <p>
+            Semangat ya kerjanya, sayanggg! Semoga semua urusan dan pekerjaannya hari ini dilancarkan tanpa hambatan apa pun. Have a great day, loveee! ✨
+        </p>
+
+        <button id="musicBtn" class="btn-music">
+            <span>This is For You 🎵</span>
+        </button>
+
+        <div id="wave" class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+
+        <audio id="bgMusic" loop>
+            <source src="Ginseng.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <footer>Made with 💖 for my favorite person</footer>
+
+    <script>
+        const musicBtn = document.getElementById('musicBtn');
+        const bgMusic = document.getElementById('bgMusic');
+        const wave = document.getElementById('wave');
+        const btnText = musicBtn.querySelector('span');
+        let isPlaying = false;
+
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                bgMusic.pause();
+                btnText.innerText = 'Dengerin Musik Yuk? 🎵';
+                wave.style.display = 'none';
+            } else {
+                bgMusic.play().catch(e => console.log("Perlu interaksi user"));
+                btnText.innerText = 'Matiin Musik ⏸️';
+                wave.style.display = 'flex';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Effect: Falling Particles
+        function createParticle() {
+            const particles = ['🌸', '✨', '💖', '☁️', '🎈', '🐾'];
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.innerText = particles[Math.floor(Math.random() * particles.length)];
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            particle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            particle.style.opacity = Math.random();
+            document.getElementById('particles').appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 5000);
+        }
+        setInterval(createParticle, 300);
+
+        // Effect: Sparkles on click
+        document.body.addEventListener('click', (e) => {
+            if (e.target.tagName === 'BUTTON') return;
+            
+            for(let i=0; i<5; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = ['✨', '⭐', '💫'][Math.floor(Math.random()*3)];
+                sparkle.style.position = 'absolute';
+                sparkle.style.left = e.pageX + 'px';
+                sparkle.style.top = e.pageY + 'px';
+                sparkle.style.fontSize = '20px';
+                sparkle.style.pointerEvents = 'none';
+                
+                const destinationX = (Math.random() - 0.5) * 100;
+                const destinationY = (Math.random() - 0.5) * 100;
+
+                sparkle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${destinationX}px, ${destinationY}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 1000,
+                    easing: 'cubic-bezier(0, .9, .57, 1)',
+                    fill: 'forwards'
+                });
+
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+    </script>
+
+</body>
+</html>
